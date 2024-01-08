@@ -1,0 +1,24 @@
+logger:
+  utils : 20
+  data  : 20
+  model : 20
+params:
+  days  : 2000
+  BTC   :
+    changepoint_prior_scale : 10.0
+    changepoint_range       : 0.99
+    daily_seasonality       : true
+    interval_width          : 0.95
+    n_changepoints          : 50
+    seasonality_prior_scale : 10.0
+    uncertainty_samples     : 100
+    weekly_seasonality      : true
+  ETH   :
+    changepoint_prior_scale : 1.0
+    changepoint_range       : 0.99
+    daily_seasonality       : true
+    interval_width          : 0.999
+    n_changepoints          : 50
+    seasonality_prior_scale : 0.1
+    uncertainty_samples     : 400
+    weekly_seasonality      : true
