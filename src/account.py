@@ -64,7 +64,7 @@ def trade():
                 client.buy_market_order(ticker, risk * total)
                 continue
             enter2 = pred.get('enter2')
-            if ((enter2 < prev) and (exit2 > curr)):
+            if ((enter2 < prev) and (enter2 > curr)):
                 logger.info(f'{t} 평균회귀 진입 (저평가)')
                 client.buy_market_order(ticker, risk * total)
                 continue
