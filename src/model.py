@@ -16,12 +16,12 @@ def get_pred(ticker) -> dict:
     for y in ('high', 'low'):
         fcst = forecast_with_config(ticker, y)
         if y == 'high':
-            pred['enter1'] = fcst['yhat'].iloc[-1]
-            pred['exit2'] = fcst['yhat_upper'].iloc[-1]
+            pred['enter1'] = fcst['yhat'].iloc[-1] # 예상고점 돌파로 인한 진입
+            pred['exit2'] = fcst['yhat_upper'].iloc[-1] # 고평가로 인한 청산
             continue
         if y == 'low':
-            pred['exit1'] = fcst['yhat'].iloc[-1]
-            pred['enter2'] = fcst['yhat_lower'].iloc[-1]
+            pred['exit1'] = fcst['yhat'].iloc[-1] # 예상저점 돌파로 인한 진입
+            pred['enter2'] = fcst['yhat_lower'].iloc[-1] # 저평가로 인한 청산
             continue
     logger.info(f'{ticker} Enter & Exit Prediction DONE')
     logger.debug(pred)

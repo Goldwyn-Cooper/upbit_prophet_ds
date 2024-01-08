@@ -1,7 +1,8 @@
 logger:
-  utils : 20
-  data  : 20
-  model : 20
+  utils   : 30
+  data    : 30
+  model   : 30
+  account : 10
 params:
   days  : 2000
   BTC   :

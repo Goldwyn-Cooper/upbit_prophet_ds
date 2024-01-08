@@ -2,8 +2,9 @@
 from unittest import TestCase, main, skip
 # 커스텀
 from src.utils import check_ip
-from src.data import get_price_hourly
+from src.data import get_price_hourly, get_price_info
 from src.model import forecast_with_config, get_pred
+from src.account import get_account_balance, trade
 
 class LogicTests(TestCase):
     def test_check_ip(self):
@@ -23,10 +24,29 @@ class LogicTests(TestCase):
                 fcst = forecast_with_config(t, y)
                 self.assertGreater(len(fcst), 0)
     
+    @skip('하위 모듈 → trade')
     def test_get_pred(self):
         for t in ('BTC', 'ETH'):
             pred = get_pred(t)
             self.assertIsInstance(pred, dict)
+
+    @skip('하위 모듈 → trade')
+    def test_get_account_balance(self):
+        self.assertEqual(
+            len(get_account_balance()), 3)
+
+    @skip('하위 모듈 → trade')
+    def test_get_account_balance_total(self):
+        self.assertIsInstance(
+            get_account_balance(total=True), float)
+    
+    @skip('하위 모듈 → trade')
+    def test_get_price_info(self):
+        for t in ('BTC', 'ETH'):
+            self.assertIsInstance(get_price_info(t), dict)
+
+    def test_trade(self):
+        trade()
 
 if __name__ == '__main__':
     main()
