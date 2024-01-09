@@ -14,10 +14,10 @@ client = Upbit(
 )
 
 logger = get_logger('account')
+tickers = ('KRW', 'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'AVAX')
 
 def get_account_balance(total=False) -> pd.DataFrame:
     '''계정 자산 목록 및 합계'''
-    tickers = ('KRW', 'BTC', 'ETH')
     df = pd.DataFrame([dict(
             symbol=t,
             price=get_current_price(f'KRW-{t}') if t != 'KRW' else 1,
@@ -31,10 +31,11 @@ def get_account_balance(total=False) -> pd.DataFrame:
     return df.set_index('symbol')
 
 def trade():
-    '''거래'''
+    '''거래 로직'''
     balance = get_account_balance()
     total = get_account_balance(total=True)
-    for t in ('BTC', 'ETH'):
+    for t in tickers[1:]:
+        logger.info(f'{t} 모니터링')
         pred = get_pred(t)
         info = get_price_info(t)
         logger.debug(pred)

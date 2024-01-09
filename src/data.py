@@ -7,6 +7,7 @@ from src.utils import get_logger, get_from_dt
 logger = get_logger('data')
 
 def get_price_info(ticker, target_risk=0.01) -> dict:
+    '''트레이딩을 위한 정보'''
     logger.info(f'{ticker}')
     hours : pd.DataFrame = get_ohlcv(f'KRW-{ticker}', 'minute60', 24)\
         .loc[:, ['high', 'low']]
