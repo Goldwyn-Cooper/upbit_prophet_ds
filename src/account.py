@@ -40,7 +40,7 @@ def trade():
     total = get_account_balance(total=True)
     for t in tickers[1:]:
         msg = f'{t} 모니터링'
-        logger.info(msg); send_message(msg)
+        logger.info(msg); send_message(f'👀 {msg}')
         pred = get_pred(t)
         info = get_price_info(t)
         logger.debug(pred)
@@ -55,13 +55,13 @@ def trade():
             exit1 = pred.get('exit1')
             if ((exit1 < prev) and (exit1 > curr)):
                 msg = f'{t} 추세추종 청산 (저점돌파)'
-                logger.info(msg); send_message(f'- {msg}')
+                logger.info(msg); send_message(f'🐻 {msg}')
                 client.sell_market_order(ticker, vol)
                 continue
             exit2 = pred.get('exit2')
             if ((exit2 > prev) and (exit2 < curr)):
                 msg = f'{t} 평균회귀 청산 (고평가)'
-                logger.info(msg); send_message(f'- {msg}')
+                logger.info(msg); send_message(f'🐻 {msg}')
                 client.sell_market_order(ticker, vol)
                 continue
         else:
@@ -69,14 +69,14 @@ def trade():
             enter1 = pred.get('enter1')
             if ((enter1 > prev) and (enter1 < curr)):
                 msg = f'{t} 추세추종 진입 (고점돌파)'
-                logger.info(msg); send_message(f'- {msg}')
+                logger.info(msg); send_message(f'🐮 {msg}')
                 client.buy_market_order(ticker, risk * total)
                 continue
             enter2 = pred.get('enter2')
             if ((enter2 < prev) and (enter2 > curr)):
                 msg = f'{t} 평균회귀 진입 (저평가)'
-                logger.info(msg); send_message(f'- {msg}')
+                logger.info(msg); send_message(f'🐮 {msg}')
                 client.buy_market_order(ticker, risk * total)
                 continue
         msg = f'{t} 포지션 유지'
-        logger.info(msg); send_message(f'- {msg}')
+        logger.info(msg); send_message(f'📌 {msg}')
