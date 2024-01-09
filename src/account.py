@@ -7,6 +7,7 @@ from pyupbit import Upbit, get_current_price
 from src.utils import get_logger
 from src.data import get_price_info
 from src.model import get_pred
+from src.telegram import send_message
 
 client = Upbit(
     os.getenv('UPBIT_AK'),
@@ -25,17 +26,21 @@ def get_account_balance(total=False) -> pd.DataFrame:
         for t in tickers])
     if total:
         s = (df['price'] * df['volume']).sum()
+        send_message(f'보유총액 : ₩{s:,.3f}')
         logger.info(s)
         return s 
     logger.info('\n' + df.to_string())
+    send_message(df)
     return df.set_index('symbol')
 
 def trade():
     '''거래 로직'''
+    send_message('🔮')
     balance = get_account_balance()
     total = get_account_balance(total=True)
     for t in tickers[1:]:
-        logger.info(f'{t} 모니터링')
+        msg = f'{t} 모니터링'
+        logger.info(msg); send_message(msg)
         pred = get_pred(t)
         info = get_price_info(t)
         logger.debug(pred)
@@ -49,24 +54,29 @@ def trade():
             logger.info(f'{t} 잔고 있음')
             exit1 = pred.get('exit1')
             if ((exit1 < prev) and (exit1 > curr)):
-                logger.info(f'{t} 추세추종 청산 (저점돌파)')
+                msg = f'{t} 추세추종 청산 (저점돌파)'
+                logger.info(msg); send_message(msg)
                 client.sell_market_order(ticker, vol)
                 continue
             exit2 = pred.get('exit2')
             if ((exit2 > prev) and (exit2 < curr)):
-                logger.info(f'{t} 평균회귀 청산 (고평가)')
+                msg = f'{t} 평균회귀 청산 (고평가)'
+                logger.info(msg); send_message(msg)
                 client.sell_market_order(ticker, vol)
                 continue
         else:
             logger.info(f'{t} 잔고 없음')
             enter1 = pred.get('enter1')
             if ((enter1 > prev) and (enter1 < curr)):
-                logger.info(f'{t} 추세추종 진입 (고점돌파)')
+                msg = f'{t} 추세추종 진입 (고점돌파)'
+                logger.info(msg); send_message(msg)
                 client.buy_market_order(ticker, risk * total)
                 continue
             enter2 = pred.get('enter2')
             if ((enter2 < prev) and (enter2 > curr)):
-                logger.info(f'{t} 평균회귀 진입 (저평가)')
+                msg = f'{t} 평균회귀 진입 (저평가)'
+                logger.info(msg); send_message(msg)
                 client.buy_market_order(ticker, risk * total)
                 continue
-        logger.info(f'{t} 포지션 유지')
+        msg = f'{t} 포지션 유지'
+        logger.info(msg); send_message(msg)
