@@ -48,7 +48,7 @@ def trade():
         prev = info.get('prev')
         curr = info.get('curr')
         risk = info.get('risk')
-        send_message(f'- 리스크 : {risk*100:.3f}%')
+        send_message(f'☔️ 리스크 : {risk*100:.3f}%')
         vol = balance.loc[t]['volume']
         ticker = f'KRW-{t}'
         if  vol > 0:
