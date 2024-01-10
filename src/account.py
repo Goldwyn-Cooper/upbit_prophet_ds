@@ -15,7 +15,8 @@ client = Upbit(
 )
 
 logger = get_logger('account')
-tickers = ('KRW', 'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'AVAX')
+# tickers = ('KRW', 'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'AVAX')
+tickers = ('KRW', 'BTC', 'ETH')
 
 def get_account_balance(total=False) -> pd.DataFrame:
     '''계정 자산 목록 및 합계'''

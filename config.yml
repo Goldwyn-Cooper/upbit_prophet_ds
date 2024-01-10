@@ -23,39 +23,39 @@ params:
     seasonality_prior_scale : 0.1
     uncertainty_samples     : 400
     weekly_seasonality      : true
-  SOL   :
-    changepoint_prior_scale : 100.0
-    changepoint_range       : 0.95
-    daily_seasonality       : true
-    interval_width          : 0.999
-    n_changepoints          : 50
-    seasonality_prior_scale : 0.001
-    uncertainty_samples     : 300
-    weekly_seasonality      : false
-  XRP   :
-    changepoint_prior_scale : 0.5
-    changepoint_range       : 0.95
-    daily_seasonality       : true
-    interval_width          : 0.99
-    n_changepoints          : 50
-    seasonality_prior_scale : 10.0
-    uncertainty_samples     : 400
-    weekly_seasonality      : true
-  ADA   :
-    changepoint_prior_scale : 10.0
-    changepoint_range       : 0.95
-    daily_seasonality       : true
-    interval_width          : 0.95
-    n_changepoints          : 50
-    seasonality_prior_scale : 0.1
-    uncertainty_samples     : 400
-    weekly_seasonality      : true
-  AVAX   :
-    changepoint_prior_scale : 100.0
-    changepoint_range       : 0.95
-    daily_seasonality       : true
-    interval_width          : 0.999
-    n_changepoints          : 50
-    seasonality_prior_scale : 0.001
-    uncertainty_samples     : 300
-    weekly_seasonality      : false
+  # SOL   :
+  #   changepoint_prior_scale : 100.0
+  #   changepoint_range       : 0.95
+  #   daily_seasonality       : true
+  #   interval_width          : 0.999
+  #   n_changepoints          : 50
+  #   seasonality_prior_scale : 0.001
+  #   uncertainty_samples     : 300
+  #   weekly_seasonality      : false
+  # XRP   :
+  #   changepoint_prior_scale : 0.5
+  #   changepoint_range       : 0.95
+  #   daily_seasonality       : true
+  #   interval_width          : 0.99
+  #   n_changepoints          : 50
+  #   seasonality_prior_scale : 10.0
+  #   uncertainty_samples     : 400
+  #   weekly_seasonality      : true
+  # ADA   :
+  #   changepoint_prior_scale : 10.0
+  #   changepoint_range       : 0.95
+  #   daily_seasonality       : true
+  #   interval_width          : 0.95
+  #   n_changepoints          : 50
+  #   seasonality_prior_scale : 0.1
+  #   uncertainty_samples     : 400
+  #   weekly_seasonality      : true
+  # AVAX   :
+  #   changepoint_prior_scale : 100.0
+  #   changepoint_range       : 0.95
+  #   daily_seasonality       : true
+  #   interval_width          : 0.999
+  #   n_changepoints          : 50
+  #   seasonality_prior_scale : 0.001
+  #   uncertainty_samples     : 300
+  #   weekly_seasonality      : false
