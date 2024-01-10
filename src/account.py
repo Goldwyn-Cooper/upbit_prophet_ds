@@ -43,7 +43,7 @@ def trade():
         msg = f'{t} 모니터링'
         logger.info(msg); send_message(f'👀 {msg}')
         pred = get_pred(t)
-        info = get_price_info(t)
+        info = get_price_info(t, target_risk=0.02)
         logger.debug(pred)
         logger.debug(info)
         prev = info.get('prev')

@@ -18,7 +18,7 @@ def get_price_info(ticker, target_risk=0.01) -> dict:
     prev = min10.iloc[-2]
     curr = min10.iloc[-1]
     aatr = (hours['high'] - hours['low']).ewm(24).mean().iloc[-1] / curr
-    risk = target_risk*2/24/aatr
+    risk = target_risk * 2 / 24 / aatr
     info = dict(prev=prev, curr=curr, risk=risk)
     logger.debug(info)
     return info
