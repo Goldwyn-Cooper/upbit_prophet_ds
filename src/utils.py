@@ -16,7 +16,7 @@ def get_yaml(fname: str):
 def get_logger(name):
     '''LOGGER 가져오기'''
     logger = logging.getLogger(name)
-    level = int(get_yaml('config.yml')
+    level = int(get_yaml('/home/ubuntu/upbit_prophet_ds/config.yml')
                 .get('logger', {})
                 .get(name, '20'))
     logger.setLevel(level)

@@ -34,7 +34,7 @@ def forecast_with_config(
     '''하이퍼패러미터을 적용한 prophet으로 예측 진행'''
     logging.getLogger('cmdstanpy').setLevel(logging.ERROR)
     logger.info(f'{ticker} {y_col}')
-    yaml : dict = get_yaml('./config.yml')
+    yaml : dict = get_yaml('/home/ubuntu/upbit_prophet_ds/config.yml')
     # 데이터
     days = int(yaml.get('params').get('days'))
     logger.debug(days)

@@ -9,7 +9,7 @@ from src.account import get_account_balance, trade
 class LogicTests(TestCase):
     @skip('하위 모듈 → trade')
     def test_basket(self):
-        basket = get_yaml('./config.yml').get('basket', [])
+        basket = get_yaml('/home/ubuntu/upbit_prophet_ds/config.yml').get('basket', [])
         print(basket)
         self.assertNotEqual(len(basket), 0)
 
