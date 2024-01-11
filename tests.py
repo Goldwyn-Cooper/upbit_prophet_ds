@@ -1,12 +1,18 @@
 # 표준
 from unittest import TestCase, main, skip
 # 커스텀
-from src.utils import check_ip
+from src.utils import check_ip, get_yaml
 from src.data import get_price_hourly, get_price_info
 from src.model import forecast_with_config, get_pred
 from src.account import get_account_balance, trade
 
 class LogicTests(TestCase):
+    @skip('하위 모듈 → trade')
+    def test_basket(self):
+        basket = get_yaml('config.yml').get('basket', [])
+        print(basket)
+        self.assertNotEqual(len(basket), 0)
+
     def test_check_ip(self):
         self.assertIsInstance(check_ip(), str)
 

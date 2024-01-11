@@ -8,6 +8,7 @@ from src.utils import get_logger
 from src.data import get_price_info
 from src.model import get_pred
 from src.telegram import send_message
+from src.utils import get_yaml
 
 client = Upbit(
     os.getenv('UPBIT_AK'),
@@ -16,7 +17,7 @@ client = Upbit(
 
 logger = get_logger('account')
 # tickers = ('KRW', 'BTC', 'ETH', 'SOL', 'XRP', 'ADA', 'AVAX')
-tickers = ('KRW', 'BTC', 'ETH')
+tickers = get_yaml('config.yml').get('basket', [])
 
 def get_account_balance(total=False) -> pd.DataFrame:
     '''계정 자산 목록 및 합계'''
@@ -36,6 +37,7 @@ def get_account_balance(total=False) -> pd.DataFrame:
 
 def trade():
     '''거래 로직'''
+    # print(tickers)
     send_message('🔮')
     balance = get_account_balance()
     total = get_account_balance(total=True)
